@@ -18,7 +18,7 @@ app.use(express.json())
 initializeDatabase();
 
 app.get("/", (req,res)=>{
-    res.send("Leaderboard backend.")
+    res.send("Welcome to leaderboard backend.")
 })
 
 app.use('/api', userRoutes);
