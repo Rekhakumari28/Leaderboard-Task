@@ -4,13 +4,16 @@ require('dotenv').config()
 const mongoUri = process.env.MONGODB
 
 const initializeDatabase = async ()=>{
-    await mongoose
-    .connect(mongoUri)
-    .then(()=>{
-        console.log("Connected to database.")
-    }).catch((error)=>{
-        console.log("Error connecting to database.", error)
-    })    
+   try {
+    await mongoose.connect(mongoUri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log(" Connected to MongoDB database.");
+  } catch (error) {
+    console.error(" Error connecting to MongoDB:", error.message);
+    process.exit(1); // stop app if DB is not connected
+  }  
 }
 
 module.exports = {initializeDatabase}
